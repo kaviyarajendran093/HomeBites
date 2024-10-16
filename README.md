@@ -1,6 +1,4 @@
-# Project Title
-
-**_Home Bites_**
+# Home Bites
 
 ### Overview
 
