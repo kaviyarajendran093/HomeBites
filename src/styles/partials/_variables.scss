@@ -1,0 +1,26 @@
+/* breakpoints */
+$mobile-margin: 1rem;
+$tablet-margin: 2rem;
+
+$tablet-breakpoint-min: 768px;
+$desktop-breakpoint-min: 1280px;
+
+/* site colours */
+//black: global text color
+$homebite-black: #13182c;
+//Orange: interactive elements.
+$homebite-orange: #cb6040;
+//white: global white
+$white: #ffffff;
+//$fall-orange: table column headers/placeholder text
+$fall-orange: #cb6040;
+//cloud: outlines/dividers/borders/table sorting icon
+$cloud: #bdc5d5;
+//fall-lightOrange: nav bg, CTA hover state bg
+$fall-lightOrange: #ffa24c;
+//light grey: bg for page/table column header/CTAs.
+$light-grey: #f7f8f9;
+//green: instock label
+$green: #748e63;
+//red:error states, delete icon
+$red: #c40c0c;

@@ -1,0 +1,66 @@
+@forward "./mixins";
+@forward "./typography";
+@forward "./variables";
+
+@use "./variables" as *;
+@use "./mixins" as *;
+@use "./typography" as *;
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  @include default-type;
+  color: $homebite-black;
+}
+
+h1 {
+  @include m-h1;
+  @include tablet {
+    @include dt-h1;
+  }
+  @include desktop {
+    @include dt-h1;
+  }
+}
+
+h2 {
+  @include m-h2;
+  @include tablet {
+    @include dt-h2;
+  }
+  @include desktop {
+    @include dt-h2;
+  }
+}
+
+h3 {
+  @include m-h3;
+  @include tablet {
+    @include dt-h3;
+  }
+  @include desktop {
+    @include dt-h3;
+  }
+}
+
+h4 {
+  @include m-h4;
+  @include tablet {
+    @include dt-h4;
+  }
+  @include desktop {
+    @include dt-h4;
+  }
+}
+
+p {
+  @include m-p2;
+  @include tablet {
+    @include dt-p2;
+  }
+  @include desktop {
+    @include dt-p2;
+  }
+}
