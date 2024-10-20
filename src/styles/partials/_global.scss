@@ -1,10 +1,12 @@
 @forward "./mixins";
 @forward "./typography";
 @forward "./variables";
+@forward "./animation";
 
 @use "./variables" as *;
 @use "./mixins" as *;
 @use "./typography" as *;
+@use "./animation" as *;
 
 *,
 *:before,
@@ -12,6 +14,9 @@
   box-sizing: border-box;
   margin: 0;
   @include default-type;
+}
+
+body {
   color: $homebite-black;
 }
 
