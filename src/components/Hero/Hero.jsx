@@ -3,8 +3,21 @@ import "./Hero.scss";
 import hero from "../../assets/Images/hero/heroImage.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
+import { ModalPopUp } from "../ModalPopUp/ModalPopUp";
+import VideoDisplay from "../VideoDisplay/VideoDisplay";
 
 const Hero = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="hero">
       <div className="hero__image-wrapper">
@@ -20,9 +33,14 @@ const Hero = () => {
             care.
           </p>
 
-          <button className="hero__button">
+          <button
+            className="hero__button"
+            onClick={openModal}
+            title="View Offer"
+          >
             <FontAwesomeIcon icon={faPlay} fade className="hero__play" />
           </button>
+          {isOpen && <ModalPopUp close={closeModal} Content={VideoDisplay} />}
         </div>
       </div>
     </div>
