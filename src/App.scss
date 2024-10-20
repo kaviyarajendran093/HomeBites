@@ -1,0 +1,25 @@
+@use "./styles/partials/global" as *;
+
+.main {
+  position: relative;
+  background-color: $light-grey;
+
+  &__page {
+    position: absolute;
+    top: 8.5rem;
+    width: 100vw;
+    min-height: 90vh;
+    padding: 0 $mobile-margin;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include tablet {
+      top: 5.75rem;
+      padding: 0 $tablet-margin;
+    }
+    @include desktop {
+      padding: 0 8.125rem;
+    }
+  }
+}
