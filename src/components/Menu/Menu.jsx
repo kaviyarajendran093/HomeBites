@@ -36,8 +36,13 @@ const Menu = ({ category }) => {
 
   //event to handle each category on click
   const handleCategory = (category_id) => {
-    setPrevActive(active);
-    setActive(category_id);
+    if (prevActive !== category_id) {
+      setPrevActive(active);
+      setActive(category_id);
+    } else {
+      setPrevActive(null);
+      setActive(null);
+    }
   };
 
   return (
