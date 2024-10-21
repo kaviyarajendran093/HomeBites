@@ -34,6 +34,25 @@
   }
 }
 
+@mixin circle-button {
+  all: unset;
+  background-color: $homebite-orange;
+  border: 1px solid rgba(255, 102, 0, 0.5);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  &:hover {
+    background-color: $homebite-orange;
+    border: solid 5px $homebite-orange;
+  }
+}
+
+@mixin circle-button-animate {
+  @include circle-button;
+  animation: fadeInOutBorder 2s infinite;
+}
+
 @mixin secondary-button {
   @include primary-button;
   border: solid 1px $cloud;

@@ -1,7 +1,7 @@
 @use "../../styles/partials/global" as *;
 
 .menu {
-  margin-top: 2.5rem;
+  margin: 2.5rem 0;
   &__title {
     @include m-h2;
     @include tablet {
@@ -36,6 +36,16 @@
     border: 2px solid $homebite-orange;
     &:hover {
       border: 6px solid rgba(255, 102, 0, 1);
+    }
+  }
+
+  &__description {
+    margin-top: 1rem;
+    width: auto;
+    @include m-h4;
+    @include tablet {
+      width: 50%;
+      @include dt-h4;
     }
   }
 

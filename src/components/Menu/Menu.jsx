@@ -14,8 +14,8 @@ const Menu = ({ category }) => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 5,
+    slidesToScroll: 5,
     responsive: [
       {
         breakpoint: 767, // When screen width is 767 or less
@@ -47,7 +47,13 @@ const Menu = ({ category }) => {
 
   return (
     <div className="menu">
-      <div className="menu__title">Menu</div>
+      <div className="menu__title">Explore our menu</div>
+      <div className="menu__description">
+        Discover a world of flavors from local home chefs, offering authentic
+        dishes and diverse cuisines to satisfy every craving. From hearty mains
+        to light bites, enjoy freshly prepared meals delivered right to your
+        door!
+      </div>
       <div className="menu__card-list">
         <Slider {...settings} className="menu__slider">
           {category.map((item) => (

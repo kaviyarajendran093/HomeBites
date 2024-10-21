@@ -4,12 +4,15 @@ import Hero from "../../components/Hero/Hero";
 import Menu from "../../components/Menu/Menu";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Cuisine from "../../components/Cuisine/Cuisine";
+import Divider from "../../components/Divider/Divider";
 
 const Home = () => {
   const baseurl = import.meta.env.VITE_API_BACKEND_URL;
   const port = import.meta.env.VITE_API_PORT;
   const API_URL = `${baseurl}:${port}`;
   const [allCategory, setAllCategory] = useState([]);
+  const [allCuisine, setAllCuisine] = useState([]);
 
   //function to get all the category list
   async function getAllCategory() {
@@ -21,8 +24,19 @@ const Home = () => {
     }
   }
 
+  //function to get all the category list
+  async function getAllCuisine() {
+    try {
+      const { data } = await axios.get(`${API_URL}/api/food/cuisine`);
+      setAllCuisine(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     getAllCategory();
+    getAllCuisine();
   }, []);
 
   if (!allCategory.length) {
@@ -40,6 +54,8 @@ const Home = () => {
     <div>
       <Hero />
       <Menu category={allCategory} />
+      <Divider />
+      <Cuisine cuisines={allCuisine} />
     </div>
   );
 };

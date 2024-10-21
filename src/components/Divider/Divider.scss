@@ -1,0 +1,18 @@
+@use "../../styles/partials/global" as *;
+
+.horizontalLines {
+  border: 1px solid $cloud;
+  margin: 1rem 0;
+  @include tablet {
+    margin: 1.5rem 0;
+  }
+  @include desktop {
+    width: 105.5%;
+  }
+}
+
+.uploadDivider {
+  @include desktop {
+    width: 100%;
+  }
+}
