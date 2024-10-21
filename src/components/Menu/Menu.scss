@@ -1,0 +1,59 @@
+@use "../../styles/partials/global" as *;
+
+.menu {
+  margin-top: 2.5rem;
+  &__title {
+    @include m-h2;
+    @include tablet {
+      @include dt-h2;
+    }
+  }
+  &__card-list {
+    margin-top: 1.5rem;
+  }
+
+  &__slider {
+    text-align: center;
+  }
+
+  &__link {
+    text-decoration: none;
+    text-align: center;
+    color: $homebite-black;
+    cursor: pointer;
+  }
+
+  &__card {
+    cursor: pointer;
+  }
+
+  &__image {
+    width: 6.75rem;
+    height: 6.75rem;
+    margin: 0 auto;
+    border-radius: 50%;
+    padding: 0.1rem;
+    border: 2px solid $homebite-orange;
+    &:hover {
+      border: 6px solid rgba(255, 102, 0, 1);
+    }
+  }
+
+  &__active {
+    border: 6px solid rgba(255, 102, 0, 1);
+  }
+
+  &__name {
+    margin-top: 0.5rem;
+    text-align: center;
+    @include m-h3;
+    @include tablet {
+      @include dt-h3;
+    }
+  }
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: $homebite-orange !important;
+}

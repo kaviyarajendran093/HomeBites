@@ -20,3 +20,5 @@ export const ModalPopUp = ({ close, Content }) => {
     </div>
   );
 };
+
+export default ModalPopUp;

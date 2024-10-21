@@ -3,10 +3,10 @@
 @keyframes fadeInOutBorder {
   0%,
   100% {
-    border-color: rgba(0, 0, 0, 0);
+    border-color: rgba(255, 255, 255, 0);
   }
   50% {
-    border-color: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
   }
 }
 
@@ -17,5 +17,14 @@
   }
   50% {
     transform: translateY(-20px);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

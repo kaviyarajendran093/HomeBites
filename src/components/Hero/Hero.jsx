@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { ModalPopUp } from "../ModalPopUp/ModalPopUp";
-import VideoDisplay from "../VideoDisplay/VideoDisplay";
+import videoDisplay from "../../components/VideoDisplay/VideoDisplay.jsx";
 
 const Hero = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +40,7 @@ const Hero = () => {
           >
             <FontAwesomeIcon icon={faPlay} fade className="hero__play" />
           </button>
-          {isOpen && <ModalPopUp close={closeModal} Content={VideoDisplay} />}
+          {isOpen && <ModalPopUp close={closeModal} Content={videoDisplay} />}
         </div>
       </div>
     </div>

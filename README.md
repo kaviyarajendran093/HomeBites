@@ -67,12 +67,17 @@ _Description:_ I want to access a food tracking page that provides real-time upd
   - axios
   - sass
   - sweetalert2
+  - slick
+  - slick-carousel
+  - swiper
 
   **Server Libraries**
 
   - Express.js
+  - cors
   - Knex.js
   - crypto
+  - express-validator
 
 ### APIs
 

@@ -27,6 +27,7 @@ function App() {
         <div className="main__page">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/:category_id" element={<Home />} />
           </Routes>
         </div>
       </div>
