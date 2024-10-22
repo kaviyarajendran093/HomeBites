@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState } from "react";
 
-const Menu = ({ category }) => {
+const Menu = ({ category, getcategoryId }) => {
   const [active, setActive] = useState(null); //Track active link
   const [prevActive, setPrevActive] = useState(null);
 
@@ -39,15 +39,17 @@ const Menu = ({ category }) => {
     if (prevActive !== category_id) {
       setPrevActive(active);
       setActive(category_id);
+      getcategoryId(category_id);
     } else {
       setPrevActive(null);
       setActive(null);
+      getcategoryId(null);
     }
   };
 
   return (
     <div className="menu">
-      <div className="menu__title">Explore our menu</div>
+      <div className="menu__title">Pick your favorite</div>
       <div className="menu__description">
         Discover a world of flavors from local home chefs, offering authentic
         dishes and diverse cuisines to satisfy every craving. From hearty mains

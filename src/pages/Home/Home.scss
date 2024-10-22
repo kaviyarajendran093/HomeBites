@@ -17,3 +17,19 @@
   animation: spin 1s ease infinite;
   margin: 5rem auto;
 }
+
+.error {
+  height: 100%;
+  text-align: center;
+  &__image {
+    width: 24.5rem;
+  }
+  &__content {
+    text-align: center;
+    vertical-align: middle;
+    @include m-h2;
+    @include tablet {
+      @include dt-h2;
+    }
+  }
+}

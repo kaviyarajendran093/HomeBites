@@ -6,6 +6,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Cuisine from "../../components/Cuisine/Cuisine";
 import Divider from "../../components/Divider/Divider";
+import { ModalPopUp } from "../../components/ModalPopUp/ModalPopUp";
+import emptyPlate from "../../assets/Images/error/empty_plate.png";
+import Gallery from "../../components/Gallery/Gallery";
 
 const Home = () => {
   const baseurl = import.meta.env.VITE_API_BACKEND_URL;
@@ -13,6 +16,16 @@ const Home = () => {
   const API_URL = `${baseurl}:${port}`;
   const [allCategory, setAllCategory] = useState([]);
   const [allCuisine, setAllCuisine] = useState([]);
+  const [categoryId, setCategoryId] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   //function to get all the category list
   async function getAllCategory() {
@@ -34,10 +47,40 @@ const Home = () => {
     }
   }
 
+  async function getCuisineByCategoryId() {
+    try {
+      const { data } = await axios.get(
+        `${API_URL}/api/food/cuisine/${categoryId}`
+      );
+
+      if (data.length > 0) {
+        setAllCuisine(data);
+      } else {
+        openModal();
+        getAllCuisine();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // function to pass as prop to category component to fetch category id
+  const getcategoryId = (cat_id) => {
+    setCategoryId(cat_id);
+  };
+
   useEffect(() => {
     getAllCategory();
     getAllCuisine();
   }, []);
+
+  useEffect(() => {
+    if (categoryId !== null) {
+      getCuisineByCategoryId();
+    } else {
+      getAllCuisine();
+    }
+  }, [categoryId]);
 
   if (!allCategory.length) {
     return (
@@ -50,12 +93,28 @@ const Home = () => {
     );
   }
 
+  //child component for error handling while selecting the cuisine
+  const ErrorHandler = () => {
+    return (
+      <div className="error">
+        <img className="error__image" src={emptyPlate} alt="empty_plate" />
+        <p className="error__content">
+          "Sorry, we're out of delicious options in this category right now—but
+          more flavors are coming soon!"
+        </p>
+      </div>
+    );
+  };
+
   return (
     <div>
       <Hero />
-      <Menu category={allCategory} />
+      <Menu category={allCategory} getcategoryId={getcategoryId} />
       <Divider />
       <Cuisine cuisines={allCuisine} />
+      {isOpen && <ModalPopUp close={closeModal} Content={ErrorHandler} />}
+      <Divider />
+      <Gallery />
     </div>
   );
 };

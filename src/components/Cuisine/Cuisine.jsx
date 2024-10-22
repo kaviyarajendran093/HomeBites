@@ -10,7 +10,7 @@ const Cuisine = ({ cuisines }) => {
 
   return (
     <div className="cuisine">
-      <div className="cuisine__title">Cuisine</div>
+      <div className="cuisine__title">Explore our cuisine</div>
       <div className="cuisine__list">
         {cuisines.map((cuisine) => (
           <div className="cuisine__card" key={cuisine.cuisine_id}>

@@ -1,0 +1,40 @@
+@use "../../styles/partials/global" as *;
+
+.gallery {
+  margin: 2.5rem 0;
+  &__title {
+    @include m-h2;
+    @include tablet {
+      @include dt-h2;
+    }
+  }
+
+  &__collection {
+    height: 100vh;
+    background-color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__collection &__content {
+    height: 28rem;
+    width: 25rem;
+    background-color: $white;
+    border: 0.2rem solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.7rem;
+    border-bottom: 0.4rem solid $homebite-orange;
+    border-top: 0.4rem solid $homebite-orange;
+    overflow: hidden;
+  }
+
+  &__image {
+    width: 100%;
+    border-bottom-left-radius: 0.6rem;
+    border-bottom-right-radius: 0.6rem;
+  }
+}
+
+.swiper-slide {
+  flex-shrink: 1 !important;
+}
