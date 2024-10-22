@@ -44,7 +44,7 @@ const Header = () => {
           </NavLink>
 
           <NavLink
-            to="/Menu"
+            to="/Menu#menu"
             className={({ isActive }) =>
               isActive ? "header__link header__link--active" : "header__link"
             }
@@ -53,7 +53,7 @@ const Header = () => {
           </NavLink>
 
           <NavLink
-            to="/Gallery"
+            to="/Gallery#gallery"
             className={({ isActive }) =>
               isActive ? "header__link header__link--active" : "header__link"
             }

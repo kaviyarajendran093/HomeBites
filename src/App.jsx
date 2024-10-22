@@ -9,6 +9,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { useEffect } from "react";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const ScrollTop = () => {
@@ -28,7 +29,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/:category_id" element={<Home />} />
+            <Route path="/Menu" element={<Home />} />
+            <Route path="/Gallery" element={<Home />} />
           </Routes>
+          <Footer />
         </div>
       </div>
     </BrowserRouter>

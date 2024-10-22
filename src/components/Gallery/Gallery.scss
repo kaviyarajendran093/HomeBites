@@ -19,13 +19,16 @@
 
   &__collection &__content {
     height: 28rem;
-    width: 25rem;
+    width: 15rem;
     background-color: $white;
     border: 0.2rem solid rgba(255, 255, 255, 0.1);
     border-radius: 0.7rem;
     border-bottom: 0.4rem solid $homebite-orange;
     border-top: 0.4rem solid $homebite-orange;
     overflow: hidden;
+    @include tablet {
+      width: 25rem;
+    }
   }
 
   &__image {

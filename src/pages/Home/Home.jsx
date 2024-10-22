@@ -3,12 +3,13 @@ import "./Home.scss";
 import Hero from "../../components/Hero/Hero";
 import Menu from "../../components/Menu/Menu";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Cuisine from "../../components/Cuisine/Cuisine";
 import Divider from "../../components/Divider/Divider";
 import { ModalPopUp } from "../../components/ModalPopUp/ModalPopUp";
 import emptyPlate from "../../assets/Images/error/empty_plate.png";
 import Gallery from "../../components/Gallery/Gallery";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const baseurl = import.meta.env.VITE_API_BACKEND_URL;
@@ -18,6 +19,12 @@ const Home = () => {
   const [allCuisine, setAllCuisine] = useState([]);
   const [categoryId, setCategoryId] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const menu = useRef(null);
+  const gallery = useRef(null);
+  const navigate = useNavigate();
+
+  // Get the current location (URL)
+  const location = useLocation();
 
   const openModal = () => {
     setIsOpen(true);
@@ -82,6 +89,16 @@ const Home = () => {
     }
   }, [categoryId]);
 
+  useEffect(() => {
+    const hash = location.hash;
+
+    if (hash === "#menu" && menu.current) {
+      menu.current.scrollIntoView({ behavior: "smooth" });
+    } else if (hash === "#gallery" && gallery.current) {
+      gallery.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [location]);
+
   if (!allCategory.length) {
     return (
       <>
@@ -109,12 +126,16 @@ const Home = () => {
   return (
     <div>
       <Hero />
-      <Menu category={allCategory} getcategoryId={getcategoryId} />
+      <div ref={menu}>
+        <Menu category={allCategory} getcategoryId={getcategoryId} />
+      </div>
       <Divider />
       <Cuisine cuisines={allCuisine} />
       {isOpen && <ModalPopUp close={closeModal} Content={ErrorHandler} />}
       <Divider />
-      <Gallery />
+      <div ref={gallery}>
+        <Gallery />
+      </div>
     </div>
   );
 };

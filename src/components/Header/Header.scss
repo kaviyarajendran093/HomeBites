@@ -37,6 +37,9 @@ li {
   &__logo {
     height: 2.75rem;
     width: auto;
+    @include tablet {
+      height: 3rem;
+    }
   }
   &__nav {
     display: flex;
