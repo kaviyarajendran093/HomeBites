@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { useEffect } from "react";
 import Footer from "./components/Footer/Footer";
+import Order from "./pages/Order/Order";
 
 function App() {
   const ScrollTop = () => {
@@ -21,21 +22,30 @@ function App() {
     return null;
   };
   return (
-    <BrowserRouter>
-      <div className="main">
-        <Header />
-        <ScrollTop />
-        <div className="main__page">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/:category_id" element={<Home />} />
-            <Route path="/Menu" element={<Home />} />
-            <Route path="/Gallery" element={<Home />} />
-          </Routes>
-          <Footer />
+    <>
+      <BrowserRouter>
+        <div className="main">
+          <Header />
+          <ScrollTop />
+          <div className="main__page">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/:category_id" element={<Home />} />
+              <Route path="/Menu" element={<Home />} />
+              <Route path="/Gallery" element={<Home />} />
+              <Route path="/Order/:cuisine_id" element={<Order />} />
+              <Route
+                path="/Order/:category_id/:cuisine_id"
+                element={<Order />}
+              />
+            </Routes>
+            <div className="main__footer">
+              <Footer />
+            </div>
+          </div>
         </div>
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </>
   );
 }
 

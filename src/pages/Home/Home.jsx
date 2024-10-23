@@ -9,7 +9,8 @@ import Divider from "../../components/Divider/Divider";
 import { ModalPopUp } from "../../components/ModalPopUp/ModalPopUp";
 import emptyPlate from "../../assets/Images/error/empty_plate.png";
 import Gallery from "../../components/Gallery/Gallery";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import Loading from "../../components/Loading/Loading";
 
 const Home = () => {
   const baseurl = import.meta.env.VITE_API_BACKEND_URL;
@@ -21,7 +22,6 @@ const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menu = useRef(null);
   const gallery = useRef(null);
-  const navigate = useNavigate();
 
   // Get the current location (URL)
   const location = useLocation();
@@ -64,6 +64,7 @@ const Home = () => {
         setAllCuisine(data);
       } else {
         openModal();
+        setCategoryId(null);
         getAllCuisine();
       }
     } catch (error) {
@@ -76,11 +77,13 @@ const Home = () => {
     setCategoryId(cat_id);
   };
 
+  //get all the initial data from api
   useEffect(() => {
     getAllCategory();
     getAllCuisine();
   }, []);
 
+  //get cuisine details based on the menu/category selected
   useEffect(() => {
     if (categoryId !== null) {
       getCuisineByCategoryId();
@@ -100,14 +103,7 @@ const Home = () => {
   }, [location]);
 
   if (!allCategory.length) {
-    return (
-      <>
-        <div className="loading__container">
-          <h3 className="loading">Fetching data! Please wait...</h3>
-          <div className="spinner"></div>
-        </div>
-      </>
-    );
+    return <Loading />;
   }
 
   //child component for error handling while selecting the cuisine
@@ -130,7 +126,7 @@ const Home = () => {
         <Menu category={allCategory} getcategoryId={getcategoryId} />
       </div>
       <Divider />
-      <Cuisine cuisines={allCuisine} />
+      <Cuisine cuisines={allCuisine} category_id={categoryId} />
       {isOpen && <ModalPopUp close={closeModal} Content={ErrorHandler} />}
       <Divider />
       <div ref={gallery}>

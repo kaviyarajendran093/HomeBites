@@ -55,13 +55,13 @@
 
 @mixin secondary-button {
   @include primary-button;
-  border: solid 1px $cloud;
+  border: solid 1px $homebite-orange;
+  color: $homebite-orange;
   background-color: $white;
-  color: $fall-orange;
   &:hover {
-    border-color: $homebite-orange;
-    color: $homebite-orange;
+    border: solid 1px $cloud;
     background-color: $white;
+    color: $fall-orange;
   }
 }
 

@@ -2,22 +2,31 @@ import React from "react";
 import "./Cuisine.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
-const Cuisine = ({ cuisines }) => {
+const Cuisine = (props) => {
+  const navigate = useNavigate();
+  const baseurl = import.meta.env.VITE_API_BACKEND_URL;
+  const port = import.meta.env.VITE_API_PORT;
+
   const navigateToOrder = (cuisine_id) => {
-    console.log(cuisine_id);
+    if (props.category_id !== null) {
+      navigate(`/Order/${props.category_id}/${cuisine_id}`);
+    } else {
+      navigate(`/Order/${cuisine_id}`);
+    }
   };
 
   return (
     <div className="cuisine">
       <div className="cuisine__title">Explore our cuisine</div>
       <div className="cuisine__list">
-        {cuisines.map((cuisine) => (
+        {props.cuisines.map((cuisine) => (
           <div className="cuisine__card" key={cuisine.cuisine_id}>
             <div className="cuisine__image-wrapper">
               <img
                 className="cuisine__image"
-                src={`http://localhost:5050/images/${cuisine.image_url}`}
+                src={`${baseurl}:${port}/images/${cuisine.image_url}`}
                 alt={cuisine.cuisine_name}
               />
             </div>

@@ -7,7 +7,8 @@ import { useState } from "react";
 
 const Menu = ({ category, getcategoryId }) => {
   const [active, setActive] = useState(null); //Track active link
-  const [prevActive, setPrevActive] = useState(null);
+  const baseurl = import.meta.env.VITE_API_BACKEND_URL;
+  const port = import.meta.env.VITE_API_PORT;
 
   //settings for slider
   const settings = {
@@ -36,14 +37,12 @@ const Menu = ({ category, getcategoryId }) => {
 
   //event to handle each category on click
   const handleCategory = (category_id) => {
-    if (prevActive !== category_id) {
-      setPrevActive(active);
-      setActive(category_id);
-      getcategoryId(category_id);
-    } else {
-      setPrevActive(null);
-      setActive(null);
+    if (active === category_id) {
+      setActive(null); // Deselect if already selected
       getcategoryId(null);
+    } else {
+      setActive(category_id); // Select new category
+      getcategoryId(category_id);
     }
   };
 
@@ -64,17 +63,14 @@ const Menu = ({ category, getcategoryId }) => {
               onClick={() => {
                 handleCategory(item.category_id);
               }}
-              value={item.category_id}
               key={item.category_id}
             >
               <img
                 className={`menu__image ${
-                  active === item.category_id && prevActive !== item.category_id
-                    ? "menu__active"
-                    : ""
+                  active === item.category_id ? "menu__active" : ""
                 }`}
-                src={`http://localhost:5050/images/${item.image_url}`}
-                alt={item.image_url}
+                src={`${baseurl}:${port}/images/${item.image_url}`}
+                alt={item.category}
               />
               <p className="menu__name">{item.category}</p>
             </div>
