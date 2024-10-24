@@ -2,16 +2,36 @@ import React, { useState, useEffect } from "react";
 import "./foodList.scss";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMinus, faStar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlus,
+  faMinus,
+  faStar,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import Loading from "../../components/Loading/Loading";
+import Divider from "../../components/Divider/Divider";
+import Swal from "sweetalert2";
+import { ModalPopUp } from "../../components/ModalPopUp/ModalPopUp";
+import Cart from "../Cart/Cart";
+import { useNavigate } from "react-router-dom";
 
 const FoodList = ({ chef_id, category_id }) => {
+  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
   const [foodList, setFoodList] = useState([]);
   const [quantities, setQuantities] = useState({});
   const [cart, setCart] = useState([]);
   const baseurl = import.meta.env.VITE_API_BACKEND_URL;
   const port = import.meta.env.VITE_API_PORT;
   const API_URL = `${baseurl}:${port}`;
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   async function getFoodList() {
     try {
@@ -54,11 +74,38 @@ const FoodList = ({ chef_id, category_id }) => {
           return [...prevCart, { ...food, quantity: 1 }];
         }
       });
+    } else {
+      Swal.fire({
+        icon: "warning",
+        text: "Maximum quantity reached for this item",
+        customClass: {
+          title: "swal2-custom",
+          text: "swal2-custom",
+          htmlContainer: "swal2-custom",
+          confirmButton: "swal2-custom swal2-custom__confirm",
+        },
+        confirmButtonText: "OK",
+      });
     }
   };
 
   const handlePlaceOrder = () => {
-    console.log(cart);
+    if (cart.length > 0) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+      navigate(`/Cart`);
+    } else {
+      Swal.fire({
+        icon: "warning",
+        text: "Cart is empty, Please add items",
+        customClass: {
+          title: "swal2-custom",
+          text: "swal2-custom",
+          htmlContainer: "swal2-custom",
+          confirmButton: "swal2-custom swal2-custom__confirm",
+        },
+        confirmButtonText: "OK",
+      });
+    }
   };
 
   const handleRemoveCart = (food) => {
@@ -99,6 +146,7 @@ const FoodList = ({ chef_id, category_id }) => {
 
   return (
     <div className="foodList">
+      <Divider />
       {foodList
         .reduce((acc, food) => {
           if (
@@ -183,23 +231,7 @@ const FoodList = ({ chef_id, category_id }) => {
           Place Order
         </button>
       </div>
-
-      {/* Optionally Display Cart 
-      <div className="cart">
-        <h2>Your Cart</h2>
-        {cart.length === 0 ? (
-          <p>No items in the cart</p>
-        ) : (
-          <ul>
-            {cart.map((item) => (
-              <li key={item.food_id}>
-                {item.name} - ${item.price} x {item.quantity} = $
-                {item.price * item.quantity}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>*/}
+      {isOpen && <ModalPopUp close={closeModal} Content={Cart} />}
     </div>
   );
 };

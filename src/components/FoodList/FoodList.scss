@@ -19,6 +19,9 @@
     @include tablet {
       flex-direction: row;
     }
+    @include desktop {
+      height: 8.125rem;
+    }
   }
   &__image-wrap {
     width: 6.25rem;
@@ -29,16 +32,23 @@
       width: 20%;
       text-align: start;
     }
+    @include desktop {
+      height: 100%;
+    }
   }
   &__image {
     width: 50%;
     height: 100%;
     border-radius: 0.3125rem;
     @include tablet {
+      border-top-left-radius: 0.3125rem;
+      border-bottom-left-radius: 0.3125rem;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
       width: 80%;
     }
     @include desktop {
-      width: 60%;
+      width: 80%;
     }
   }
 
@@ -177,5 +187,157 @@
     cursor: pointer;
     margin-top: 1rem;
     @include primary-button;
+  }
+}
+
+.cart {
+  margin-top: 2.5rem;
+
+  &__order {
+    display: flex;
+    border: 1px solid $homebite-orange;
+    border-radius: 1.5rem;
+    align-items: center;
+    width: fit-content;
+  }
+
+  &__Plus-btn,
+  &__Minus-btn {
+    @include circle-button;
+    text-align: center;
+    width: 1rem;
+    height: 1rem;
+    padding-bottom: 0.2rem;
+    &:hover {
+      opacity: 70%;
+      border: solid 1px $homebite-orange;
+    }
+  }
+
+  &__Plus-btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &__Minus-btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &__Plus,
+  &__Minus {
+    color: $light-grey;
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  &__quantity {
+    padding: 0 0.5rem;
+    @include m-h4;
+    @include tablet {
+      @include dt-h4;
+    }
+  }
+
+  &__title {
+    @include m-h2;
+    @include tablet {
+      @include dt-h2;
+    }
+  }
+
+  &__items {
+    margin-top: 1rem;
+  }
+
+  &__header {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    display: none;
+    @include tablet {
+      display: inline-flex;
+    }
+  }
+  &__headDivider {
+    display: none;
+    @include tablet {
+      display: block;
+    }
+  }
+  &__head-title {
+    width: 16.6%;
+    @include m-h4;
+    @include tablet {
+      @include dt-h4;
+    }
+    color: $fall-orange;
+  }
+
+  &__data-wrap {
+    width: 100%;
+    display: flex;
+    margin: 0 1rem;
+    flex-wrap: wrap;
+    @include tablet {
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+  }
+
+  &__data {
+    width: 50%;
+    padding-bottom: 1rem;
+    @include tablet {
+      text-align: center;
+      width: 16.6%;
+      padding-bottom: 0;
+    }
+  }
+
+  &__data-mhead {
+    @include m-h4;
+    @include tablet {
+      @include dt-h4;
+    }
+    color: $fall-orange;
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__item {
+    @include m-h4;
+    @include tablet {
+      @include dt-h4;
+    }
+  }
+
+  &__data-item {
+    width: 3.125rem;
+    height: 3.125rem;
+    border-radius: 0.3125rem;
+  }
+
+  &__data-remove {
+    all: unset;
+  }
+  &__remove {
+    width: 90%;
+  }
+}
+
+.swal2-custom {
+  font-family: $montserrat-font;
+  @include m-h3;
+  @include tablet {
+    @include dt-h3;
+  }
+
+  &__confirm {
+    background-color: $homebite-orange;
+    color: $white;
+    border-radius: 1.25rem;
   }
 }
