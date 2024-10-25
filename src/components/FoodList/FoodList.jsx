@@ -12,7 +12,7 @@ import Loading from "../../components/Loading/Loading";
 import Divider from "../../components/Divider/Divider";
 import Swal from "sweetalert2";
 import { ModalPopUp } from "../../components/ModalPopUp/ModalPopUp";
-import Cart from "../Cart/Cart";
+import Cart from "../../pages/Cart/Cart";
 import { useNavigate } from "react-router-dom";
 
 const FoodList = ({ chef_id, category_id }) => {
@@ -192,19 +192,6 @@ const FoodList = ({ chef_id, category_id }) => {
                     </div>
                     <div className="foodList__order">
                       <button
-                        className="foodList__Plus-btn"
-                        title="plus"
-                        onClick={() => handleAddCart(food)}
-                      >
-                        <FontAwesomeIcon
-                          icon={faPlus}
-                          className="foodList__Plus"
-                        />
-                      </button>
-                      <p className="foodList__quantity">
-                        {quantities[food.food_id]}
-                      </p>
-                      <button
                         className="foodList__Minus-btn"
                         title="minus"
                         onClick={() => handleRemoveCart(food)}
@@ -212,6 +199,19 @@ const FoodList = ({ chef_id, category_id }) => {
                         <FontAwesomeIcon
                           icon={faMinus}
                           className="foodList__Minus"
+                        />
+                      </button>
+                      <p className="foodList__quantity">
+                        {quantities[food.food_id]}
+                      </p>
+                      <button
+                        className="foodList__Plus-btn"
+                        title="plus"
+                        onClick={() => handleAddCart(food)}
+                      >
+                        <FontAwesomeIcon
+                          icon={faPlus}
+                          className="foodList__Plus"
                         />
                       </button>
                     </div>

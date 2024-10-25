@@ -7,7 +7,7 @@ import { useEffect, useState, useRef } from "react";
 import Cuisine from "../../components/Cuisine/Cuisine";
 import Divider from "../../components/Divider/Divider";
 import { ModalPopUp } from "../../components/ModalPopUp/ModalPopUp";
-import emptyPlate from "../../assets/Images/error/empty_plate.png";
+import emptyPlate from "../../assets/Images/error/Chef-cuate.png";
 import Gallery from "../../components/Gallery/Gallery";
 import { useLocation } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
@@ -81,6 +81,7 @@ const Home = () => {
   useEffect(() => {
     getAllCategory();
     getAllCuisine();
+    localStorage.setItem("userId", 401);
   }, []);
 
   //get cuisine details based on the menu/category selected

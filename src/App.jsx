@@ -11,7 +11,8 @@ import {
 import { useEffect } from "react";
 import Footer from "./components/Footer/Footer";
 import Order from "./pages/Order/Order";
-import Cart from "./components/Cart/Cart";
+import Cart from "./pages/Cart/Cart";
+import DeliveryInfo from "./pages/DeliveryInfo/DeliveryInfo";
 
 function App() {
   const ScrollTop = () => {
@@ -40,6 +41,7 @@ function App() {
                 element={<Order />}
               />
               <Route path="/Cart" element={<Cart />} />
+              <Route path="/OrderPay" element={<DeliveryInfo />} />
             </Routes>
 
             <div className="main__footer">

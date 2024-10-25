@@ -47,7 +47,11 @@ const Order = () => {
 
   return (
     <div className="order">
-      <div className="order__title">{chefs[0].cuisine_name}</div>
+      <div className="order__title">
+        {category_id
+          ? `${chefs[0].cuisine_name} cuisine categorised by menu`
+          : `${chefs[0].cuisine_name} cuisine`}
+      </div>
       <div className="order__list">
         {chefs.map((chef) => (
           <div className="order__card" key={chef.chef_id}>

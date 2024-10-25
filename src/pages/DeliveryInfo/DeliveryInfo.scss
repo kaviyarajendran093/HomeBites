@@ -1,0 +1,9 @@
+@use "../../styles/partials/global" as *;
+
+.placeOrder {
+  display: flex;
+  flex-direction: column;
+  @include tablet {
+    flex-direction: row;
+  }
+}
