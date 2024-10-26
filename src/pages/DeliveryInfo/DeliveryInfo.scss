@@ -4,6 +4,89 @@
   display: flex;
   flex-direction: column;
   @include tablet {
+    & > * {
+      width: 50%;
+    }
     flex-direction: row;
+  }
+
+  &__deliveryInfo {
+    display: flex;
+    flex-direction: column;
+    @include tablet {
+      margin-right: 10%;
+    }
+  }
+  &__deliveryInfo-title {
+    margin-top: 2.5rem;
+
+    @include m-h2;
+    @include tablet {
+      @include dt-h2;
+    }
+  }
+
+  &__form {
+    margin-top: 2rem;
+  }
+
+  &__fields {
+    display: flex;
+    gap: 0.5rem;
+    & > * {
+      width: 50%;
+    }
+  }
+
+  &__total {
+    margin: 2.5rem 0 0 0;
+    @include m-h3;
+    @include tablet {
+      @include dt-h3;
+      margin-right: 10%;
+    }
+  }
+
+  &__total-title {
+    margin-bottom: 1.5rem;
+    @include m-h2;
+    @include tablet {
+      @include dt-h2;
+    }
+  }
+
+  &__detail {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__detail-info {
+    @include m-h3;
+    @include tablet {
+      @include dt-h3;
+    }
+  }
+
+  &__detail-info--color {
+    color: $fall-orange;
+  }
+
+  &__total-button {
+    margin-top: 2rem;
+    @include primary-button;
+  }
+}
+
+.swal2-custom {
+  font-family: $montserrat-font;
+  @include m-h3;
+  @include tablet {
+    @include dt-h3;
+  }
+
+  &__confirm {
+    background-color: $homebite-orange;
+    color: $white;
+    border-radius: 1.25rem;
   }
 }

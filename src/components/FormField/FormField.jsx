@@ -2,7 +2,6 @@ import "./FormField.scss";
 import error from "../../assets/Images/error/error.svg";
 
 export default function FormField({
-  labelText,
   fieldType,
   inputType,
   name,

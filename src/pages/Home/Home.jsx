@@ -11,6 +11,7 @@ import emptyPlate from "../../assets/Images/error/Chef-cuate.png";
 import Gallery from "../../components/Gallery/Gallery";
 import { useLocation } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
+import ScrollToUp from "../../components/ScrollToUp/ScrollToUp";
 
 const Home = () => {
   const baseurl = import.meta.env.VITE_API_BACKEND_URL;
@@ -20,6 +21,7 @@ const Home = () => {
   const [allCuisine, setAllCuisine] = useState([]);
   const [categoryId, setCategoryId] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
   const menu = useRef(null);
   const gallery = useRef(null);
 
@@ -120,6 +122,10 @@ const Home = () => {
     );
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div>
       <Hero />
@@ -133,6 +139,7 @@ const Home = () => {
       <div ref={gallery}>
         <Gallery />
       </div>
+      <ScrollToUp />
     </div>
   );
 };

@@ -290,6 +290,18 @@ const Cart = () => {
                 confirmButtonText: "OK",
               });
             } else {
+              localStorage.setItem(
+                "total",
+                JSON.stringify([
+                  {
+                    subtotal: subTotal,
+                    deliveryFee: deliveryFee,
+                    promoTotal: promoTotal,
+                    total: total,
+                    isPromoCode: isPromoCode,
+                  },
+                ])
+              );
               navigate("/OrderPay");
             }
           });

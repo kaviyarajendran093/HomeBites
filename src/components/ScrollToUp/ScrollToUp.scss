@@ -1,0 +1,21 @@
+@use "../../styles/partials/global" as *;
+.scroll-to-top {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  background-color: $homebite-orange;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s;
+  z-index: 1000;
+  &:hover {
+    background-color: $fall-orange;
+  }
+  &__ArrowUp {
+    color: $white;
+  }
+}

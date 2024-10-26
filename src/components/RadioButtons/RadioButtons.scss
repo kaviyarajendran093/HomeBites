@@ -1,0 +1,71 @@
+@use "../../styles/partials/global" as *;
+
+.radio-buttons {
+  display: flex;
+  flex-direction: column;
+  &__title {
+    margin-top: 1.5rem;
+    @include m-h2;
+    @include tablet {
+      @include dt-h2;
+      margin-right: 10%;
+    }
+  }
+
+  &__column {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 1rem;
+  }
+
+  &__radio {
+    display: none;
+    margin-right: 0.5rem;
+    margin-bottom: 0;
+    width: fit-content;
+  }
+
+  &__label {
+    @include m-h3;
+    @include tablet {
+      @include dt-h3;
+    }
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__custom-radio {
+    width: 16px;
+    height: 16px;
+    border: 2px solid $homebite-orange; /* Border color */
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    position: relative;
+    cursor: pointer;
+    &::after {
+      content: "";
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: $homebite-orange; /* Inner circle color */
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.2s ease;
+    }
+  }
+
+  &__radio:checked + &__label &__custom-radio::after {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
