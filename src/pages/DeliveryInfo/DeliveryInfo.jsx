@@ -3,8 +3,12 @@ import React, { useEffect, useState } from "react";
 import FormField from "../../components/FormField/FormField";
 import Divider from "../../components/Divider/Divider";
 import RadioButtons from "../../components/RadioButtons/RadioButtons";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const DeliveryInfo = () => {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [firstNameError, setFirstNameError] = useState("");
   const [lastName, setLastName] = useState("");
@@ -30,6 +34,11 @@ const DeliveryInfo = () => {
   const [isPromoCode, setIsPromoCode] = useState(false);
   const [payment, setPayment] = useState("cod");
   const [paymentError, setPaymentError] = useState("");
+  const [orderId, setOrderId] = useState(0);
+  const [userId, setUserId] = useState("");
+  const baseurl = import.meta.env.VITE_API_BACKEND_URL;
+  const port = import.meta.env.VITE_API_PORT;
+  const API_URL = `${baseurl}:${port}`;
 
   const handleFirstName = (e) => {
     setFirstNameError("");
@@ -84,6 +93,9 @@ const DeliveryInfo = () => {
 
   useEffect(() => {
     const totalArray = JSON.parse(localStorage.getItem("total"));
+    console.log(localStorage.getItem("orderId"));
+    setOrderId(localStorage.getItem("orderId"));
+    setUserId(localStorage.getItem("userId"));
 
     if (totalArray) {
       setSubtotal(totalArray[0].subtotal);
@@ -155,7 +167,7 @@ const DeliveryInfo = () => {
 
     if (!country) {
       error = true;
-      setCountry("Country is required");
+      setCountryError("Country is required");
     }
 
     if (error) {
@@ -175,8 +187,119 @@ const DeliveryInfo = () => {
         phone.slice(3, 6) +
         "-" +
         phone.slice(6, phone.length);
-      console.log(formattedPhoneNum);
-      console.log("payment successful");
+
+      const addDelivery = async () => {
+        try {
+          const response = await axios.post(
+            `${API_URL}/api/trackOrder`,
+            {
+              user_id: userId,
+              order_id: orderId,
+              first_name: firstName,
+              last_name: lastName,
+              email: email,
+              phone_no: formattedPhoneNum,
+              street: street,
+              city: city,
+              province: state,
+              country: country,
+              zipcode: zipCode,
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          Swal.fire({
+            icon: "success",
+            text: "Payment made successfully!",
+            customClass: {
+              title: "swal2-custom",
+              text: "swal2-custom",
+              htmlContainer: "swal2-custom",
+              confirmButton: "swal2-custom swal2-custom__confirm",
+            },
+            confirmButtonText: "OK",
+          }).then(() => {
+            let updateFailed = false;
+            try {
+              updateOrder(orderId);
+            } catch (error) {
+              console.log("order update failed");
+              rollbackDeliveryInfo(response.data.delivery_id);
+              cancelOrder(orderId);
+              return;
+            }
+            if (updateFailed) {
+              Swal.fire({
+                icon: "error",
+                text: "Something went wrong while processing your deliveryInfo. Your order has been cancelled.",
+                customClass: {
+                  title: "swal2-custom",
+                  text: "swal2-custom",
+                  htmlContainer: "swal2-custom",
+                  confirmButton: "swal2-custom swal2-custom__confirm",
+                },
+                confirmButtonText: "OK",
+              });
+            } else {
+              console.log("Payment made and order updated");
+
+              navigate("/TrackOrder");
+            }
+          });
+        } catch (error) {
+          Swal.fire({
+            icon: "error",
+            text: "Payment failed. Please try again.",
+            customClass: {
+              title: "swal2-custom",
+              text: "swal2-custom",
+              htmlContainer: "swal2-custom",
+              confirmButton: "swal2-custom swal2-custom__confirm",
+            },
+            confirmButtonText: "OK",
+          });
+          console.error("Error placing order:", error);
+        }
+      };
+
+      addDelivery();
+    }
+  };
+
+  const rollbackDeliveryInfo = async (orderId) => {
+    try {
+      await axios.delete(`${API_URL}/api/trackOrder/${orderId}`);
+      console.log(`Order ${orderId} has been rolled back successfully.`);
+    } catch (error) {
+      console.error(`Error rolling back order ${orderId}:`, error);
+    }
+  };
+
+  const updateOrder = async (orderId) => {
+    try {
+      await axios.patch(`${API_URL}/api/trackOrder/order/${orderId}`, {
+        status: "Processing",
+        payment: true,
+        payment_metod: payment,
+      });
+      console.log(`order for id ${orderId} updated successfully!`);
+    } catch (error) {
+      console.error(`Error updating order for id ${orderId}:`, error);
+    }
+  };
+
+  const cancelOrder = async (orderId) => {
+    try {
+      await axios.patch(`${API_URL}/api/trackOrder/order/${orderId}`, {
+        status: "Cancelled",
+      });
+      console.log(`order for id ${orderId} updated successfully!`);
+    } catch (error) {
+      console.error(`Error updating order for id ${orderId}:`, error);
     }
   };
 
@@ -243,7 +366,7 @@ const DeliveryInfo = () => {
               inputType="text"
               name="state"
               id="state"
-              placeholder="State"
+              placeholder="Province"
               value={state}
               onChange={handleState}
               errorMessage={stateError}

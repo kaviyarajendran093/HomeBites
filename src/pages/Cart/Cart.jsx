@@ -248,6 +248,7 @@ const Cart = () => {
             total_amount: total,
             status: "pending",
             payment: 0,
+            promocode: isPromoCode,
           });
 
           // Optional: Show success message after the order is placed
@@ -266,7 +267,7 @@ const Cart = () => {
 
             const orderId = response.data.order_id;
             console.log("Order ID for invoices:", orderId);
-
+            localStorage.setItem("orderId", orderId);
             cart.forEach((item) => {
               try {
                 addInvoice(orderId, item);
@@ -350,6 +351,7 @@ const Cart = () => {
         subtotal: item.price * item.quantity,
         active: 1,
       });
+
       console.log(`Invoice for item ${item.food_id} created successfully!`);
     } catch (error) {
       console.error(`Error creating invoice for item ${item.food_id}:`, error);

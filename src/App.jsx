@@ -13,6 +13,8 @@ import Footer from "./components/Footer/Footer";
 import Order from "./pages/Order/Order";
 import Cart from "./pages/Cart/Cart";
 import DeliveryInfo from "./pages/DeliveryInfo/DeliveryInfo";
+import TrackOrder from "./pages/TrackOrder/TrackOrder";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 
 function App() {
   const ScrollTop = () => {
@@ -42,6 +44,9 @@ function App() {
               />
               <Route path="/Cart" element={<Cart />} />
               <Route path="/OrderPay" element={<DeliveryInfo />} />
+              <Route path="/TrackOrder" element={<TrackOrder />} />
+              <Route path="/404" element={<PageNotFound />} />
+              <Route path="*" element={<PageNotFound />} />
             </Routes>
 
             <div className="main__footer">

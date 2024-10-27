@@ -21,7 +21,6 @@ const Home = () => {
   const [allCuisine, setAllCuisine] = useState([]);
   const [categoryId, setCategoryId] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [visible, setVisible] = useState(false);
   const menu = useRef(null);
   const gallery = useRef(null);
 

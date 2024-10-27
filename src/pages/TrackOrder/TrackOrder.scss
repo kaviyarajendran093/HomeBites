@@ -1,0 +1,49 @@
+@use "../../styles/partials/global" as *;
+
+.trackOrder {
+  margin-top: 2.5rem;
+  &__title {
+    @include m-h2;
+    @include tablet {
+      @include dt-h2;
+    }
+  }
+  &__info-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & > * {
+      margin-bottom: 1rem;
+    }
+    @include tablet {
+      flex-direction: row;
+      & > * {
+        width: 20%;
+        margin-bottom: 0;
+      }
+    }
+  }
+  &__image {
+    width: 4.25rem;
+    height: 4.25rem;
+  }
+  &__col {
+    @include m-h4;
+    @include tablet {
+      @include dt-h4;
+    }
+  }
+  &__status {
+    @include processing-tag;
+  }
+  &__center-image {
+    text-align: center;
+  }
+  &__img {
+    width: 18.75rem;
+    height: fit-content;
+    @include tablet {
+      width: 28.75rem;
+    }
+  }
+}

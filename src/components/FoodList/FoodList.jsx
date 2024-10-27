@@ -17,21 +17,12 @@ import { useNavigate } from "react-router-dom";
 
 const FoodList = ({ chef_id, category_id }) => {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
   const [foodList, setFoodList] = useState([]);
   const [quantities, setQuantities] = useState({});
   const [cart, setCart] = useState([]);
   const baseurl = import.meta.env.VITE_API_BACKEND_URL;
   const port = import.meta.env.VITE_API_PORT;
   const API_URL = `${baseurl}:${port}`;
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
 
   async function getFoodList() {
     try {
@@ -231,7 +222,6 @@ const FoodList = ({ chef_id, category_id }) => {
           Place Order
         </button>
       </div>
-      {isOpen && <ModalPopUp close={closeModal} Content={Cart} />}
     </div>
   );
 };
