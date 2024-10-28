@@ -1,0 +1,55 @@
+@use "../../styles/partials/global" as *;
+.promo {
+  margin: 0 auto;
+  padding: 2em;
+  width: 100%;
+  background: $white;
+  text-align: center;
+  border-radius: 0.625rem;
+  position: relative;
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: $homebite-orange;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 3px;
+    border-radius: 0.625rem;
+  }
+
+  &::before {
+    filter: blur(1.5rem);
+    opacity: 0.5;
+  }
+
+  &__content {
+    @include m-h2;
+    @include tablet {
+      @include dt-h2;
+    }
+  }
+  &__content-span {
+    font-weight: 800;
+    color: $homebite-orange;
+  }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
