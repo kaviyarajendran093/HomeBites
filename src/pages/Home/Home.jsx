@@ -2,6 +2,7 @@ import React from "react";
 import "./Home.scss";
 import Hero from "../../components/Hero/Hero";
 import Menu from "../../components/Menu/Menu";
+import Topchefs from "../../components/TopChefs/Topchefs";
 import axios from "axios";
 import { useEffect, useState, useRef } from "react";
 import Cuisine from "../../components/Cuisine/Cuisine";
@@ -23,6 +24,7 @@ const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menu = useRef(null);
   const gallery = useRef(null);
+  const topChefs = useRef(null);
 
   // Get the current location (URL)
   const location = useLocation();
@@ -97,11 +99,15 @@ const Home = () => {
   useEffect(() => {
     const hash = location.hash;
 
-    if (hash === "#menu" && menu.current) {
-      menu.current.scrollIntoView({ behavior: "smooth" });
-    } else if (hash === "#gallery" && gallery.current) {
-      gallery.current.scrollIntoView({ behavior: "smooth" });
-    }
+    setTimeout(() => {
+      if (hash === "#menu" && menu.current) {
+        menu.current.scrollIntoView({ behavior: "smooth" });
+      } else if (hash === "#gallery" && gallery.current) {
+        gallery.current.scrollIntoView({ behavior: "smooth" });
+      } else if (hash === "#topChefs" && topChefs.current) {
+        topChefs.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 0);
   }, [location]);
 
   if (!allCategory.length) {
@@ -137,6 +143,9 @@ const Home = () => {
       <Divider />
       <div ref={gallery}>
         <Gallery />
+      </div>
+      <div ref={topChefs}>
+        <Topchefs />
       </div>
       <ScrollToUp />
     </div>

@@ -62,7 +62,7 @@ const Header = () => {
           </NavLink>
 
           <NavLink
-            to="/Contact_Us"
+            to="/TopChefs#topChefs"
             className={({ isActive }) =>
               isActive ? "header__link header__link--active" : "header__link"
             }
