@@ -182,6 +182,10 @@ Home Page
 
 ![Tracking Order](src/assets/Images/readme/TrackOrder-website.png)
 
+**Error Page**
+
+![Error Page](src/assets/Images/readme/errorPage.png)
+
 ### Data
 
 ![Class Diagram](<src/assets/Images/readme/UML class - homebites.png>)
