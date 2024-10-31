@@ -2,6 +2,8 @@ import React from "react";
 import "./Header.scss";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/Images/logos/LogoWhite.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   return (
@@ -68,6 +70,14 @@ const Header = () => {
             }
           >
             Top_Chefs
+          </NavLink>
+          <NavLink
+            to="/cart"
+            className={({ isActive }) =>
+              isActive ? "header__link header__link--active" : "header__link"
+            }
+          >
+            <FontAwesomeIcon icon={faCartShopping} className="header__cart" />
           </NavLink>
         </nav>
       </div>
