@@ -41,6 +41,7 @@ const Home = () => {
   //function to get all the category list
   async function getAllCategory() {
     try {
+      console.log(`${API_URL}/api/food`);
       const { data } = await axios.get(`${API_URL}/api/food`);
       setAllCategory(data);
     } catch (error) {
