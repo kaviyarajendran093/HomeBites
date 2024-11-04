@@ -391,7 +391,7 @@ const Cart = () => {
                   <p className="cart__data-mhead">Item</p>
                   <img
                     className="cart__item cart__data-item"
-                    src={`${baseurl}:${port}/images/${item.image_url}`}
+                    src={`${baseurl}/images/${item.image_url}`}
                     alt={item.name}
                   />
                 </div>
