@@ -161,7 +161,7 @@ const FoodList = ({ chef_id, category_id }) => {
                 <div className="foodList__image-wrap">
                   <img
                     className="foodList__image"
-                    src={`${baseurl}:${port}/images/${food.image_url}`}
+                    src={`${baseurl}/images/${food.image_url}`}
                     alt={food.name}
                   />
                 </div>
