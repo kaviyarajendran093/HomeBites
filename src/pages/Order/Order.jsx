@@ -14,7 +14,7 @@ const Order = () => {
   const [isVisible, setIsVisible] = useState(false);
   const baseurl = import.meta.env.VITE_API_BACKEND_URL;
   const port = import.meta.env.VITE_API_PORT;
-  const API_URL = `${baseurl}:${port}`;
+  const API_URL = `${baseurl}`;
 
   async function getChef() {
     try {

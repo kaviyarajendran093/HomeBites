@@ -38,7 +38,7 @@ const DeliveryInfo = () => {
   const [userId, setUserId] = useState("");
   const baseurl = import.meta.env.VITE_API_BACKEND_URL;
   const port = import.meta.env.VITE_API_PORT;
-  const API_URL = `${baseurl}:${port}`;
+  const API_URL = `${baseurl}`;
 
   const handleFirstName = (e) => {
     setFirstNameError("");

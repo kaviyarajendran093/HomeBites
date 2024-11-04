@@ -18,7 +18,7 @@ import Promo from "../../components/Promo/Promo";
 const Home = () => {
   const baseurl = import.meta.env.VITE_API_BACKEND_URL;
   const port = import.meta.env.VITE_API_PORT;
-  const API_URL = `${baseurl}:${port}`;
+  const API_URL = `${baseurl}`;
   const [allCategory, setAllCategory] = useState([]);
   const [allCuisine, setAllCuisine] = useState([]);
   const [categoryId, setCategoryId] = useState(null);
