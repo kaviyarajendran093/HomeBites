@@ -26,7 +26,7 @@ const Cuisine = (props) => {
             <div className="cuisine__image-wrapper">
               <img
                 className="cuisine__image"
-                src={`${baseurl}:${port}/images/${cuisine.image_url}`}
+                src={`${baseurl}/images/${cuisine.image_url}`}
                 alt={cuisine.cuisine_name}
               />
             </div>

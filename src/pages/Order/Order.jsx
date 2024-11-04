@@ -58,7 +58,7 @@ const Order = () => {
             <div className="order__image-wrapper">
               <img
                 className="order__image"
-                src={`${baseurl}:${port}/images/${chef.image_url}`}
+                src={`${baseurl}/images/${chef.image_url}`}
                 alt={chef.name}
               />
             </div>

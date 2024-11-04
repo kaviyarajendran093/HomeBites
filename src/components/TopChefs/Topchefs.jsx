@@ -69,7 +69,7 @@ const Topchefs = () => {
             <div className="topChefs__card">
               <img
                 className="topChefs__image"
-                src={`${baseurl}:${port}/images/${chef.image_url}`}
+                src={`${baseurl}/images/${chef.image_url}`}
                 alt={chef.name}
               />
               <div className="topChefs__description">

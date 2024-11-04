@@ -69,7 +69,7 @@ const Menu = ({ category, getcategoryId }) => {
                 className={`menu__image ${
                   active === item.category_id ? "menu__active" : ""
                 }`}
-                src={`${baseurl}:${port}/images/${item.image_url}`}
+                src={`${baseurl}/images/${item.image_url}`}
                 alt={item.category}
               />
               <p className="menu__name">{item.category}</p>
